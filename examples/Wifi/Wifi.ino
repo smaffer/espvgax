@@ -2,8 +2,8 @@
 #include <ESP8266WiFi.h>
 #include <fonts/arial12.h>
 
-const char* ssid = "Telecom-01049104";
-const char* password = "ciampahouse2013maffiodo1";
+const char* ssid = "SSID";
+const char* password = "PASSWORD";
 
 WiFiServer server(80);
 ESPVGAX vga;
