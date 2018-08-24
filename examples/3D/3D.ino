@@ -67,7 +67,7 @@ void draw_cube(float cz, float a, float b, float c) {
   draw_line(7, 6); draw_line(7, 3); draw_line(7, 5);
 }
 void loop() {
-  float a, b, c;
+  float a=0, b=0, c=0;
   while (1) { 
     //never return from loop(). never call delay() or yield() functions
     vga.clear(0);    
