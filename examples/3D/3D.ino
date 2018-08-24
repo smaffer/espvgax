@@ -71,9 +71,9 @@ void loop() {
   while (1) { 
     //never return from loop(). never call delay() or yield() functions
     vga.clear(0);    
-    draw_cube(1, 2, c, 0, 0);
-    draw_cube(1, 4, b, c, a);
-    draw_cube(1, 9, c, a, b);
+    draw_cube(2, c, 0, 0);
+    draw_cube(4, b, c, a);
+    draw_cube(9, c, a, b);
     vga.delay(50);
     a+=0.1f;
     b+=0.01f;
