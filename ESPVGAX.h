@@ -17,6 +17,8 @@ hardware wiring and library usage.
 #ifndef __ESPVGAX_LIBRARY__
 #define __ESPVGAX_LIBRARY__
 
+#define ESPVGAX_VERSION "1.0.0"
+
 #include <ESP8266WiFi.h>
 #include <Arduino.h>
 
