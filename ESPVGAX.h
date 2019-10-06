@@ -41,7 +41,7 @@ hardware wiring and library usage.
  * enable EXTRA COLORS generation. Two additional PINs are used. These colors 
  * will cover one or more lines 
  */
-#define ESPVGAX_EXTRA_COLORS
+//#define ESPVGAX_EXTRA_COLORS
 /*
  * optional PIN for line coloring, used only if ESPVGAX_EXTRA_COLORS is defined
  * 
