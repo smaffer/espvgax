@@ -286,6 +286,19 @@ public:
     #undef WRITE_PIXEL_BASE
   }
   /*
+   * getpixel(x, y)
+   *    x: horizontal pixel coordinate. Must be less than ESPVGAX_WIDTH
+   *    y: vertical pixel coordinate. Must be less than ESPVGAX_HEIGHT
+   *    return: 1bit color at <x,y> coordinate
+   */
+  static inline int getpixel(byte x, byte y) {
+      if (isXOutside(x) || isYOutside(y))
+        return 0;
+      uint8_t *p=(uint8_t*)&fbb[y*ESPVGAX_BWIDTH + (x>>3)];
+      uint8_t shift=7-(x & 7);
+      return ( (*p) >> shift ) & 1;
+  }
+  /*
    * blit_P(src, dx, dy, srcw, scrh, op, scrwstride)
    * blit  (src, dx, dy, srcw, scrh, op, scrwstride)
    *    draw an image at a given coordinate.
