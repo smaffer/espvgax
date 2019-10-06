@@ -293,7 +293,7 @@ public:
    *    y: vertical pixel coordinate. Must be less than ESPVGAX_HEIGHT
    *    return: 1bit color at <x,y> coordinate
    */
-  static inline int getpixel(byte x, byte y) {
+  static inline uint8_t getpixel(int x, int y) {
       if (isXOutside(x) || isYOutside(y))
         return 0;
       uint8_t *p=(uint8_t*)&fbb[y*ESPVGAX_BWIDTH + (x>>3)];
