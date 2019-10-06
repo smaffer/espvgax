@@ -507,6 +507,13 @@ public:
    *      the number of pixels in a line!
    */
   static volatile uint8_t *fbb;
+  /*
+   * tone(uint8_t t)
+   * noTone()
+   *    Yet unimplemented.
+   */
+  static inline void tone(uint8_t t) {}
+  static inline void noTone() {}
 };
 #ifndef SWAP_UINT16
 #define SWAP_UINT16(x) (((x)>>8) | ((x)<<8))
