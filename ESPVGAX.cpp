@@ -149,7 +149,7 @@ void ESPVGAX::end() {
 #endif
   interrupts();
 }
-void ESPVGAX::delay(uint32_t msec) {
+void ICACHE_RAM_ATTR ESPVGAX::delay(uint32_t msec) {
   // predict the CPU ticks to be awaited
   uint32_t us=msec*1000;
   uint32_t start=TICKS;
