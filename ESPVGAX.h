@@ -270,18 +270,20 @@ public:
     #define WRITE_PIXEL_BASE \
       uint8_t *p=(uint8_t*)&fbb[y*ESPVGAX_BWIDTH + (x>>3)]; \
       uint8_t shift=7-(x & 7); \
-      c&=1;
+      c=c>0?1:0;
     WRITE_PIXEL_BASE;
     *p&=~(1<<shift);
     *p|= (c<<shift);
   }
   static inline void orpixel(int x, int y, uint8_t c) {
     WRITE_PIXEL_BASE;
+    c=c>0?1:0;
     *p|=(c<<shift);
   }
   static inline void xorpixel(int x, int y, uint8_t c) {
     WRITE_PIXEL_BASE;
     #undef WRITE_PIXEL_BASE
+    c=c>0?1:0;
     *p^=(c<<shift);
     #undef WRITE_PIXEL_BASE
   }
