@@ -14,7 +14,7 @@ static inline void draw_row(int line, int x0, int x1, uint8_t c, int op) {
 	    x1=tmp;
 	  }
 	  int sw=x1-x0;
-    while (x0%32) {
+    while (x0%32 && sw > 32) {
       ESPVGAX::putpixel(x0, line, c, op);
       x0++;
       sw--;
