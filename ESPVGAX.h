@@ -41,7 +41,7 @@ hardware wiring and library usage.
  * enable EXTRA COLORS generation. Two additional PINs are used. These colors 
  * will cover one or more lines 
  */
-#define ESPVGAX_EXTRA_COLORS
+//#define ESPVGAX_EXTRA_COLORS
 /*
  * optional PIN for line coloring, used only if ESPVGAX_EXTRA_COLORS is defined
  * 
@@ -270,20 +270,35 @@ public:
     #define WRITE_PIXEL_BASE \
       uint8_t *p=(uint8_t*)&fbb[y*ESPVGAX_BWIDTH + (x>>3)]; \
       uint8_t shift=7-(x & 7); \
-      c&=1;
+      c=c>0?1:0;
     WRITE_PIXEL_BASE;
     *p&=~(1<<shift);
     *p|= (c<<shift);
   }
   static inline void orpixel(int x, int y, uint8_t c) {
     WRITE_PIXEL_BASE;
+    c=c>0?1:0;
     *p|=(c<<shift);
   }
   static inline void xorpixel(int x, int y, uint8_t c) {
     WRITE_PIXEL_BASE;
     #undef WRITE_PIXEL_BASE
+    c=c>0?1:0;
     *p^=(c<<shift);
     #undef WRITE_PIXEL_BASE
+  }
+  /*
+   * getpixel(x, y)
+   *    x: horizontal pixel coordinate. Must be less than ESPVGAX_WIDTH
+   *    y: vertical pixel coordinate. Must be less than ESPVGAX_HEIGHT
+   *    return: 1bit color at <x,y> coordinate
+   */
+  static inline uint8_t getpixel(int x, int y) {
+      if (isXOutside(x) || isYOutside(y))
+        return 0;
+      uint8_t *p=(uint8_t*)&fbb[y*ESPVGAX_BWIDTH + (x>>3)];
+      uint8_t shift=7-(x & 7);
+      return ( (*p) >> shift ) & 1;
   }
   /*
    * blit_P(src, dx, dy, srcw, scrh, op, scrwstride)
@@ -494,6 +509,13 @@ public:
    *      the number of pixels in a line!
    */
   static volatile uint8_t *fbb;
+  /*
+   * tone(uint8_t t)
+   * noTone()
+   *    Yet unimplemented.
+   */
+  static inline void tone(uint8_t t) {}
+  static inline void noTone() {}
 };
 #ifndef SWAP_UINT16
 #define SWAP_UINT16(x) (((x)>>8) | ((x)<<8))
