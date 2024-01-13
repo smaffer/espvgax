@@ -170,6 +170,7 @@ These fonts are released with ESPVGAX, inside the /fonts/ folder:
 - **Monospaced DOS 12** <br>![mdos12](gfx/mdos.png)
 - **Monospaced DOS 8** <br>![mdos8](gfx/mdosH8.png)
 - **MS Sans 10** <br>![mssans10](gfx/mssans10.png)
+- **Nitram-Micro-Font 5 (by Nitram509)** <br>![nitram5](gfx/nitram5.png)
 - **Ocra 9** <br>![ocra9](gfx/ocra9.png)
 - **PT Monospaced 9** <br>![ptmono9](gfx/ptmono9.png)
 - **Tahoma 11** <br>![tahoma11](gfx/tahoma11.png)
