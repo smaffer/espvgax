@@ -94,7 +94,7 @@ function generate() {
                 var r = data[idx + 0];
                 var g = data[idx + 1];
                 var b = data[idx + 2];
-                if (r==g && g==b && b==0) 
+                if (r==g && g==b && b==0)
                     bytes[bi]|=1<<pshift;
                 pshift--;
                 if (pshift<0) {
@@ -132,13 +132,17 @@ function generate() {
             ostring+=comment+gstring+'\n';
     }
     var fontname=$('#vname').val();
-    var header="//font generated from 1BITFONT - by Sandro Maffiodo\n"+
+    var header="#ifndef __FNT_"+fontname.toUpperCase()+"__\n" +
+        "#define __FNT_"+fontname.toUpperCase()+"__\n" +
+        "\n" +
+        "//font generated from 1BITFONT - by Sandro Maffiodo\n"+
         "#define FNT_"+fontname.toUpperCase()+"_HEIGHT "+cdata.height+"\n"+
         "#define FNT_"+fontname.toUpperCase()+"_SYMBOLS_COUNT "+gcount+"\n"+
-        "#define FNT_"+fontname.toUpperCase()+"_GLYPH_WIDTH "+maxbc+"\n"+        
+        "#define FNT_"+fontname.toUpperCase()+"_GLYPH_WIDTH "+maxbc+"\n"+
         "//data size="+(gcount*cdata.height)+" bytes\n"+
         "const unsigned char ESPVGAX_ALIGN32 fnt_"+fontname+"_data[FNT_"+fontname.toUpperCase()+"_SYMBOLS_COUNT][4+FNT_"+fontname.toUpperCase()+"_HEIGHT*FNT_"+fontname.toUpperCase()+"_GLYPH_WIDTH] PROGMEM={\n";
-    var footer="};\n";
+    var footer="};\n" +
+        "#endif\n";
     $('#out').text(header+ostring+footer);
 }
 function boot() {
@@ -165,13 +169,13 @@ $(document).ready(boot);
         <h3>WHAT IS:</h3>
         1BITFONT is a simple web tool to generate bit fonts for ESPVGAX library. <br>
         <br>
-        1BITFONT read an image where all the fonts glyphs are layouted in a single 
+        1BITFONT read an image where all the fonts glyphs are layouted in a single
         line. Each glyph must be separated from the next with a single white line.
         The tool will autodetect the glyph boundaries and generate a byte table
         where each byte is 8 horizontal pixels of the glyph. All glyphs will
         have the same height but different widths. The first byte of the glyph,
         inside the generated table, is the glyph width (in pixels, where 1pixel=1bit).
-        
+
         <h3>RULES:</h3>
         <ul>
             <li>source image must have all glyphs on a single line. black is foreground color, white is background</li>
@@ -180,7 +184,7 @@ $(document).ready(boot);
             <li>source image must use a single pixel to delimitate all glyphs (white line separator). <br> When a white line is part of the glyph (for example the glyph ") you can use a red pixel to join the two separated pixels</li>
             <li>the maximum width of a single glyph must be less or equal 8</li>
         </ul>
-        
+
         <h3>INPUT:</h3>
         source image: <input id="f" type="file" /><br>
         <div id='previewbox' style='display: none'>
@@ -194,7 +198,7 @@ $(document).ready(boot);
         <BR>
         output variable name:
         <input value="varname" type='text' id='vname'/>
-        
+
         <h3>OUTPUT:</h3>
         <button onclick='generate()'>GENERATE</button>
         <pre id='out'></pre>
