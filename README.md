@@ -33,6 +33,15 @@ This library require an ESP8266 with all GPIO exposed, like ESP-12E, NodeMCU-12E
 
 VGA signal generation based on [https://github.com/hchunhui/esp-vga](https://github.com/hchunhui/esp-vga) (thanks for your awesome works).
 
+Check out my others Arduino libraries: 
+
+- [VGAX](https://github.com/smaffer/vgax) a VGA library for Arduino UNO and MEGA (the first lib)
+- [VGAXUA](https://github.com/smaffer/vgaxua) a VGAX variant that support 192x80px 1bpp or 200x240px 1bpp on Arduino MEGA!
+- [ESPVGAX2](https://github.com/smaffer/espvgax2) VGA signal generation on ESP8266, 320x240px with 16 colors!
+
+
+
+
 ## Video
 
 The library implement a 512x480px framebuffer with 1bpp, where each pixel is stored as a single bit. 
